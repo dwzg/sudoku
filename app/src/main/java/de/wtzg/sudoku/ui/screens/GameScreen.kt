@@ -223,14 +223,17 @@ fun GameScreen(state: UiState, actions: GameActions) {
             onDismissRequest = { confirmQuit = false },
             title = { Text(stringResource(R.string.quit_title)) },
             text = { Text(stringResource(R.string.quit_message)) },
+            // Three actions don't fit side by side in every language, so stack them.
             confirmButton = {
-                Row {
-                    TextButton(onClick = { confirmQuit = false }) { Text(stringResource(R.string.cancel)) }
-                    TextButton(onClick = { confirmQuit = false; actions.onQuit(true) }) {
-                        Text(stringResource(R.string.show_solution))
-                    }
+                Column(horizontalAlignment = Alignment.End) {
                     TextButton(onClick = { confirmQuit = false; actions.onQuit(false) }) {
-                        Text(stringResource(R.string.quit))
+                        Text(stringResource(R.string.quit), maxLines = 1)
+                    }
+                    TextButton(onClick = { confirmQuit = false; actions.onQuit(true) }) {
+                        Text(stringResource(R.string.show_solution), maxLines = 1)
+                    }
+                    TextButton(onClick = { confirmQuit = false }) {
+                        Text(stringResource(R.string.cancel), maxLines = 1)
                     }
                 }
             },
