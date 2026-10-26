@@ -39,7 +39,7 @@ Install on a connected device with `./gradlew installDebug`. Every push to `main
 
 ## Releases
 
-Pushing a version tag (`git tag v1.0.0 && git push origin v1.0.0`) builds a signed APK and App Bundle and publishes them as a GitHub release. See [docs/RELEASING.md](docs/RELEASING.md) for the one-time signing setup.
+Running the **Release** workflow from the Actions tab with a version number, or pushing a version tag (`git tag v1.0.0 && git push origin v1.0.0`), builds a signed APK and App Bundle and publishes them as a GitHub release. See [docs/RELEASING.md](docs/RELEASING.md) for the one-time signing setup.
 
 Local release builds without the signing secrets fall back to the debug key, so they still install for testing.
 

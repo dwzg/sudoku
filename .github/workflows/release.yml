@@ -1,34 +1,54 @@
 name: Release
 
-# Push a version tag to publish a release:
-#   git tag v1.0.0 && git push origin v1.0.0
-# Tags with a suffix (v1.1.0-beta.1) are published as pre-releases.
+# Two ways to publish a release:
+#  - Push a version tag:  git tag v1.0.0 && git push origin v1.0.0
+#  - Run this workflow from the Actions tab and enter a version. A new tag is created on the
+#    selected branch's latest commit; an existing tag is rebuilt and its release updated.
+# Versions with a suffix (1.1.0-beta.1) are published as pre-releases.
 on:
   push:
     tags: ["v*"]
   workflow_dispatch:
     inputs:
-      tag:
-        description: Existing tag to (re)build and publish, e.g. v1.0.0
+      version:
+        description: Version to release, e.g. 1.0.0 or 1.1.0-beta.1
         required: true
 
 permissions:
   contents: write
 
 concurrency:
-  group: release-${{ github.event.inputs.tag || github.ref_name }}
+  group: release-${{ github.event.inputs.version || github.ref_name }}
   cancel-in-progress: false
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    env:
-      TAG: ${{ github.event.inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ env.TAG }}
           fetch-depth: 0
+
+      - name: Resolve tag and commit
+        id: commit
+        env:
+          INPUT_VERSION: ${{ github.event.inputs.version }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            tag="v${INPUT_VERSION#v}"
+          else
+            tag="$GITHUB_REF_NAME"
+          fi
+          echo "TAG=$tag" >> "$GITHUB_ENV"
+          # Build the tagged commit if the tag exists; otherwise the release step creates
+          # the tag on the commit checked out here.
+          if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+            git checkout -q "refs/tags/$tag"
+            echo "Building existing tag $tag"
+          else
+            echo "Tag $tag will be created on $(git rev-parse --short HEAD)"
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Read version from tag
         id: version
@@ -104,6 +124,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG }}
+          target_commitish: ${{ steps.commit.outputs.sha }}
           name: Sudoku ${{ steps.version.outputs.version_name }}
           prerelease: ${{ steps.version.outputs.prerelease }}
           generate_release_notes: true

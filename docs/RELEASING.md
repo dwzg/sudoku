@@ -43,14 +43,21 @@ signed with the debug key.
 
 ## Publishing a release
 
+Either from the GitHub website (works on a phone):
+
+1. Open the repository's **Actions** tab and pick the **Release** workflow.
+2. Tap **Run workflow**, keep the branch on `main`, enter the version (e.g. `1.0.0`) and run it.
+   The workflow creates the tag `v1.0.0` on the latest commit of `main`.
+
+Or with git:
+
 ```sh
 git checkout main && git pull
 git tag v1.0.0
 git push origin v1.0.0
 ```
 
-Watch the run under the repository's **Actions** tab. When it finishes, the release is on the
-**Releases** page.
+When the run finishes, the release is on the **Releases** page.
 
 - **Version numbers come from the tag.** `v1.2.3` becomes versionName `1.2.3` and versionCode
   `10203` (major × 10000 + minor × 100 + patch), so every newer tag gets a higher code. Minor and
@@ -58,9 +65,8 @@ Watch the run under the repository's **Actions** tab. When it finishes, the rele
 - **Pre-releases:** a tag with a suffix, like `v1.1.0-beta.1`, is published as a pre-release.
   It shares its versionCode with `v1.1.0`. To update a beta install to the final version,
   uninstall the beta first, or bump the patch number.
-- **Re-running:** to rebuild an existing tag (e.g. after fixing a secret), run the workflow
-  manually from the Actions tab (**Run workflow**) and enter the tag. The existing release is
-  updated.
+- **Re-running:** to rebuild an existing version (e.g. after fixing a secret), run the workflow
+  again with the same version. It builds the existing tag and updates its release.
 - **Release notes** are generated from the pull requests and commits since the previous tag.
   Labels on pull requests (`feature`, `bug`, …) group them, see
   [`.github/release.yml`](../.github/release.yml).
