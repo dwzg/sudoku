@@ -37,7 +37,11 @@ Requirements: JDK 17+ and the Android SDK (platform 35).
 
 Install on a connected device with `./gradlew installDebug`. Every push to `main` also builds the APKs on GitHub Actions (see the run's artifacts).
 
-The release build is signed with the debug key so it installs directly. Set up your own signing config before publishing to a store.
+## Releases
+
+Pushing a version tag (`git tag v1.0.0 && git push origin v1.0.0`) builds a signed APK and App Bundle and publishes them as a GitHub release. See [docs/RELEASING.md](docs/RELEASING.md) for the one-time signing setup.
+
+Local release builds without the signing secrets fall back to the debug key, so they still install for testing.
 
 ## Project layout
 

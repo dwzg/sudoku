@@ -4,6 +4,10 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+// Release signing comes from environment variables (set by the release workflow).
+// Without them, release builds fall back to the debug key so local builds still install.
+val signingKeystore: String? = System.getenv("SIGNING_KEYSTORE_PATH")?.takeIf { it.isNotBlank() }
+
 android {
     namespace = "de.wtzg.sudoku"
     compileSdk = 35
@@ -12,8 +16,20 @@ android {
         applicationId = "de.wtzg.sudoku"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        // Overridden by CI from the release tag, e.g. -PversionName=1.2.3 -PversionCode=10203.
+        versionCode = providers.gradleProperty("versionCode").orNull?.toInt() ?: 1
+        versionName = providers.gradleProperty("versionName").orNull ?: "1.0"
+    }
+
+    signingConfigs {
+        if (signingKeystore != null) {
+            create("release") {
+                storeFile = file(signingKeystore)
+                storePassword = System.getenv("SIGNING_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("SIGNING_KEY_ALIAS")
+                keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
+            }
+        }
     }
 
     buildTypes {
@@ -24,9 +40,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Signed with the debug key so the release APK installs out of the box.
-            // Replace with a real signing config before publishing to a store.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName(if (signingKeystore != null) "release" else "debug")
         }
     }
     compileOptions {

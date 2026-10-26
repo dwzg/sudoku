@@ -1,0 +1,118 @@
+name: Release
+
+# Push a version tag to publish a release:
+#   git tag v1.0.0 && git push origin v1.0.0
+# Tags with a suffix (v1.1.0-beta.1) are published as pre-releases.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing tag to (re)build and publish, e.g. v1.0.0
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.event.inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.inputs.tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+          fetch-depth: 0
+
+      - name: Read version from tag
+        id: version
+        run: .github/scripts/version-from-tag.sh "$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Check signing secrets
+        env:
+          KEYSTORE: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          missing=()
+          [ -n "$KEYSTORE" ] || missing+=(SIGNING_KEYSTORE_BASE64)
+          [ -n "$STORE_PASSWORD" ] || missing+=(SIGNING_KEYSTORE_PASSWORD)
+          [ -n "$KEY_ALIAS" ] || missing+=(SIGNING_KEY_ALIAS)
+          [ -n "$KEY_PASSWORD" ] || missing+=(SIGNING_KEY_PASSWORD)
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "::error::Missing repository secrets: ${missing[*]}. See docs/RELEASING.md."
+            exit 1
+          fi
+
+      - name: Decode keystore
+        env:
+          KEYSTORE: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+        run: |
+          echo "$KEYSTORE" | base64 --decode > "$RUNNER_TEMP/release.jks"
+          echo "SIGNING_KEYSTORE_PATH=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Test, lint and build
+        env:
+          SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: >
+          ./gradlew testReleaseUnitTest lintRelease assembleRelease bundleRelease
+          -PversionName=${{ steps.version.outputs.version_name }}
+          -PversionCode=${{ steps.version.outputs.version_code }}
+
+      - name: Verify signature and collect files
+        id: files
+        run: |
+          name="sudoku-${{ steps.version.outputs.version_name }}"
+          mkdir -p dist
+          cp app/build/outputs/apk/release/app-release.apk "dist/$name.apk"
+          cp app/build/outputs/bundle/release/app-release.aab "dist/$name.aab"
+
+          build_tools="$ANDROID_HOME/build-tools/$(ls "$ANDROID_HOME/build-tools" | sort -V | tail -1)"
+          "$build_tools/apksigner" verify --print-certs "dist/$name.apk" | tee signature.txt
+          if grep -q "CN=Android Debug" signature.txt; then
+            echo "::error::APK is signed with the debug key"
+            exit 1
+          fi
+
+          (cd dist && sha256sum * > SHA256SUMS.txt)
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+
+      - name: Keep R8 mapping for crash reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.files.outputs.name }}-mapping
+          path: app/build/outputs/mapping/release/mapping.txt
+          retention-days: 90
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}
+          name: Sudoku ${{ steps.version.outputs.version_name }}
+          prerelease: ${{ steps.version.outputs.prerelease }}
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+          files: |
+            dist/${{ steps.files.outputs.name }}.apk
+            dist/${{ steps.files.outputs.name }}.aab
+            dist/SHA256SUMS.txt
+
+      - name: Remove keystore
+        if: always()
+        run: rm -f "$RUNNER_TEMP/release.jks"

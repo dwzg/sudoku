@@ -1,0 +1,9 @@
+# Groups the auto-generated release notes by pull request label.
+changelog:
+  categories:
+    - title: New features
+      labels: [feature, enhancement]
+    - title: Bug fixes
+      labels: [bug, fix]
+    - title: Other changes
+      labels: ["*"]
