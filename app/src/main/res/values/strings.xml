@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sudoku</string>
+    <string name="tagline">A calm, classic number puzzle</string>
+
+    <string name="new_game">New game</string>
+    <string name="continue_game">Continue</string>
+    <string name="statistics">Statistics</string>
+    <string name="settings">Settings</string>
+    <string name="back">Back</string>
+    <string name="home">Home</string>
+    <string name="more">More options</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="paused">Paused</string>
+    <string name="restart">Restart</string>
+    <string name="restart_title">Restart puzzle?</string>
+    <string name="restart_message">All your entries and notes will be cleared.</string>
+    <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
+
+    <string name="difficulty">Difficulty</string>
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+    <string name="difficulty_expert">Expert</string>
+    <string name="difficulty_easy_desc">Relaxed warm-up, plenty of clues</string>
+    <string name="difficulty_medium_desc">A balanced challenge</string>
+    <string name="difficulty_hard_desc">Fewer clues, deeper thinking</string>
+    <string name="difficulty_expert_desc">For seasoned solvers</string>
+
+    <string name="mistakes">Mistakes</string>
+    <string name="hints">Hints</string>
+    <string name="time">Time</string>
+    <string name="undo">Undo</string>
+    <string name="erase">Erase</string>
+    <string name="notes">Notes</string>
+    <string name="hint">Hint</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+
+    <string name="solved_title">Puzzle solved!</string>
+    <string name="new_best_time">New best time 🎉</string>
+    <string name="game_over">Game over</string>
+    <plurals name="game_over_message">
+        <item quantity="one">You made %1$d mistake. Want another chance?</item>
+        <item quantity="other">You made %1$d mistakes. Want another chance?</item>
+    </plurals>
+    <string name="second_chance">Second chance</string>
+
+    <string name="section_gameplay">Gameplay</string>
+    <string name="section_highlights">Highlights</string>
+    <string name="section_appearance">Appearance</string>
+    <string name="setting_check_mistakes">Check mistakes</string>
+    <string name="setting_check_mistakes_desc">Mark wrong numbers right away and count them</string>
+    <string name="setting_mistake_limit">Mistake limit</string>
+    <string name="setting_mistake_limit_desc">End the game after 3 mistakes</string>
+    <string name="setting_auto_notes">Auto-remove notes</string>
+    <string name="setting_auto_notes_desc">Clear notes in the row, column and box when placing a number</string>
+    <string name="setting_highlight_region">Highlight row, column and box</string>
+    <string name="setting_highlight_region_desc">Shade the cells related to the selected one</string>
+    <string name="setting_highlight_same">Highlight identical numbers</string>
+    <string name="setting_highlight_same_desc">Shade every cell with the selected number</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="setting_dynamic_color">Dynamic color</string>
+    <string name="setting_dynamic_color_desc">Use colors from your wallpaper</string>
+
+    <string name="stat_played">Played</string>
+    <string name="stat_won">Won</string>
+    <string name="stat_win_rate">Win rate</string>
+    <string name="stat_best_time">Best time</string>
+    <string name="stat_avg_time">Average</string>
+    <string name="stat_streak">Streak / best</string>
+    <string name="reset_stats">Reset statistics</string>
+    <string name="reset_stats_message">This permanently clears all statistics.</string>
+</resources>

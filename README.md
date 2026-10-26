@@ -1,0 +1,48 @@
+# Sudoku
+
+A modern, clean Sudoku app for Android, built with Kotlin, Jetpack Compose and Material 3.
+
+<p>
+  <img src="docs/screenshots/homeLight.png" width="200" alt="Home screen" />
+  <img src="docs/screenshots/gameLight.png" width="200" alt="Game screen" />
+  <img src="docs/screenshots/homeDark.png" width="200" alt="Home screen, dark" />
+  <img src="docs/screenshots/gameDark.png" width="200" alt="Game screen, dark, notes mode" />
+</p>
+
+## Features
+
+- **Endless puzzles** in four difficulties (Easy, Medium, Hard, Expert). Every puzzle is generated on the device and has exactly one solution.
+- **Notes** (pencil marks), with optional auto-removal when you place a number.
+- **Undo, erase and hints.**
+- **Smart highlighting** of the selected row, column and box, and of identical numbers (including matching notes).
+- **Mistake checking**, with an optional 3-mistake limit. With checking off, only duplicate numbers in a row, column or box are flagged.
+- **Timer** that pauses when you leave the app, plus a pause button that hides the board.
+- **Auto-save**: close the app at any time and continue later.
+- **Statistics** per difficulty: games played and won, win rate, best and average time, win streaks.
+- **Light and dark themes**, and Material You dynamic color on Android 12+.
+- Number pad shows how many of each digit are left; works in portrait and landscape.
+
+## Building
+
+Requirements: JDK 17+ and the Android SDK (platform 35).
+
+```sh
+./gradlew assembleDebug        # app/build/outputs/apk/debug/app-debug.apk
+./gradlew assembleRelease      # minified build, signed with the debug key
+./gradlew testDebugUnitTest    # solver, generator and game-state tests
+```
+
+Install on a connected device with `./gradlew installDebug`. Every push to `main` also builds the APKs on GitHub Actions (see the run's artifacts).
+
+The release build is signed with the debug key so it installs directly. Set up your own signing config before publishing to a store.
+
+## Project layout
+
+```
+app/src/main/java/com/dwzg/sudoku/
+├── domain/   Solver, puzzle generator, game state (pure Kotlin, unit-tested)
+├── data/     Settings, statistics and saved game (SharedPreferences)
+└── ui/       ViewModel, theme, board/number pad components and screens
+```
+
+Requires Android 8.0 (API 26) or newer.
