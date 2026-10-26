@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="learn">Learn</string>
+    <string name="learn_summary">Lessons and training drills</string>
+    <string name="lessons">Lessons</string>
+    <string name="lessons_summary">From the rules to advanced techniques, step by step</string>
+    <string name="training">Training</string>
+    <string name="training_summary">Short timed drills to make each technique second nature</string>
+    <string name="completed">Completed</string>
+    <string name="close">Close</string>
+    <string name="next">Next</string>
+    <string name="previous">Back</string>
+    <string name="finish">Finish</string>
+    <string name="show_me">Show me</string>
+    <string name="example">Example</string>
+    <string name="practice_n">Practice %1$d of %2$d</string>
+    <string name="step_n">Step %1$d of %2$d</string>
+    <string name="round_n">Round %1$d of %2$d</string>
+    <string name="preparing_exercise">Preparing a new puzzle…</string>
+    <string name="lesson_complete">Lesson complete!</string>
+    <string name="lesson_complete_body">You know how to use the %1$s now. Train it to get faster, or move on to the next lesson.</string>
+    <string name="train_this">Train this technique</string>
+    <string name="back_to_learn">Back to overview</string>
+    <string name="training_done">Training complete!</string>
+    <string name="training_result">%1$d of %2$d right on the first try\nTime: %3$s</string>
+    <string name="train_again">Train again</string>
+    <string name="drill_not_played">Not played yet</string>
+    <string name="drill_best_score">Best: %1$d/%2$d</string>
+    <string name="drill_best_time">Best: %1$d/%2$d · %3$s</string>
+
+    <string name="house_row">row %1$d</string>
+    <string name="house_column">column %1$d</string>
+    <string name="house_box">box %1$d</string>
+
+    <string name="technique_full_house">Full house</string>
+    <string name="technique_hidden_single">Hidden single</string>
+    <string name="technique_naked_single">Naked single</string>
+    <string name="technique_naked_pair">Naked pair</string>
+    <string name="technique_pointing">Pointing</string>
+    <string name="technique_hidden_pair">Hidden pair</string>
+
+    <string name="prompt_full_house">Find a row, column or box with just one empty cell and fill it in. Select the cell, then tap the number.</string>
+    <string name="prompt_hidden_single">Find a number that fits in only one cell of a row, column or box, and place it.</string>
+    <string name="prompt_naked_single">Find a cell where only one number fits, and place it.</string>
+    <string name="prompt_naked_pair">Find a naked pair and remove a candidate it rules out. Select the cell, then tap the number to remove.</string>
+    <string name="prompt_pointing">Find a number that points along a row or column, and remove one of the candidates it rules out.</string>
+    <string name="prompt_hidden_pair">Find a hidden pair and remove another candidate from one of its two cells.</string>
+
+    <string name="feedback_correct">Correct!</string>
+    <string name="feedback_revealed">Here\'s how it works</string>
+    <string name="feedback_wrong">Not quite – try again</string>
+    <string name="feedback_cannot_remove">That candidate can\'t be removed this way</string>
+    <string name="feedback_other_technique">Right number, different technique</string>
+    <string name="feedback_other_technique_body">That move is correct, but it isn\'t a %1$s. Try to find one.</string>
+
+    <string name="explain_full_house">Only one cell is empty in %1$s, so it gets the missing %2$d.</string>
+    <string name="explain_hidden_single">In %1$s, the %2$d fits in only one cell. Every other empty cell already sees a %2$d in its row, column or box.</string>
+    <string name="explain_naked_single">The row, column and box of this cell already contain every other number, so only %1$d fits here.</string>
+    <string name="explain_naked_pair">Two cells in %1$s can only hold %2$d or %3$d. So both numbers can be removed from the other cells of %1$s.</string>
+    <string name="explain_pointing">In %1$s, the %2$d can only go in %3$s. So the %2$d can be removed from the rest of %3$s.</string>
+    <string name="explain_hidden_pair">In %1$s, %2$d and %3$d fit only in the same two cells. So all other candidates can be removed from these two cells.</string>
+
+    <string name="lesson_rules">The rules</string>
+    <string name="lesson_rules_summary">How Sudoku works, and your first move</string>
+    <string name="lesson_rules_p1_title">The goal</string>
+    <string name="lesson_rules_p1">Fill the grid so that every row, every column and every 3×3 box contains each number from 1 to 9 exactly once.\n\nThe grid has 9 rows, 9 columns and 9 boxes. Together we call them houses.</string>
+    <string name="lesson_rules_p2_title">Never guess</string>
+    <string name="lesson_rules_p2">Some numbers are given at the start and never change. Every puzzle in this app has exactly one solution, and you can always reach it by logic alone.\n\nThe lessons show you the techniques to find the next number.</string>
+    <string name="lesson_rules_p3_title">Full house</string>
+    <string name="lesson_rules_p3">The easiest move: when a row, column or box has only one empty cell left, it gets the one number that is still missing.\n\nNext you\'ll see an example, then it\'s your turn.</string>
+
+    <string name="lesson_hidden_single_summary">Find the only place a number can go</string>
+    <string name="lesson_hidden_single_p1_title">Focus on one number</string>
+    <string name="lesson_hidden_single_p1">Pick a number and a box. For each empty cell of the box, check if the number already appears in that cell\'s row or column. If it does, the number can\'t go there.</string>
+    <string name="lesson_hidden_single_p2_title">Only one spot left</string>
+    <string name="lesson_hidden_single_p2">If just one cell remains, the number must go there. This is called a hidden single, because the cell might have other options – but the number has nowhere else to go.\n\nThe same works for rows and columns.</string>
+    <string name="lesson_hidden_single_p3_title">Tip</string>
+    <string name="lesson_hidden_single_p3">Start with numbers that already appear often on the board. They rule out the most cells, so hidden singles are easiest to spot with them.\n\nTap a number on the board to highlight all of its copies.</string>
+
+    <string name="lesson_naked_single_summary">Find the only number a cell can hold</string>
+    <string name="lesson_naked_single_p1_title">Focus on one cell</string>
+    <string name="lesson_naked_single_p1">Now turn it around: pick an empty cell and collect every number that already appears in its row, its column and its box.</string>
+    <string name="lesson_naked_single_p2_title">Only one number fits</string>
+    <string name="lesson_naked_single_p2">If eight different numbers are already taken, the ninth is the only one that fits. This is called a naked single.\n\nLook for cells whose row, column and box are already quite full.</string>
+
+    <string name="lesson_naked_pair">Candidates &amp; naked pairs</string>
+    <string name="lesson_naked_pair_summary">Use notes to rule numbers out</string>
+    <string name="lesson_naked_pair_p1_title">Candidates</string>
+    <string name="lesson_naked_pair_p1">Harder puzzles need notes. The candidates of a cell are all numbers that could still go there. Write them as small numbers into the cell.\n\nIn the game, turn on Notes mode to do this. In these exercises the candidates are already filled in.</string>
+    <string name="lesson_naked_pair_p2_title">Naked pair</string>
+    <string name="lesson_naked_pair_p2">If two cells in the same house have exactly the same two candidates – say 3 and 7 – then these two cells take the 3 and the 7, in some order.</string>
+    <string name="lesson_naked_pair_p3_title">Clean up</string>
+    <string name="lesson_naked_pair_p3">So no other cell in that house can be a 3 or a 7. Remove both numbers from the candidates of all other cells in the house.\n\nTo remove a candidate, select the cell and tap the number.</string>
+
+    <string name="lesson_pointing_summary">When a box points along a line</string>
+    <string name="lesson_pointing_p1_title">Box meets line</string>
+    <string name="lesson_pointing_p1">Look at one number inside a box. If all of its candidates in that box lie in the same row, the number has to go in that row – somewhere inside this box.\n\nThe same goes for columns.</string>
+    <string name="lesson_pointing_p2_title">Remove outside the box</string>
+    <string name="lesson_pointing_p2">Because the box will use the number in that row, no other cell of the row can have it. Remove the number from the cells of the row that are outside the box.</string>
+
+    <string name="lesson_hidden_pair_summary">Two numbers that claim two cells</string>
+    <string name="lesson_hidden_pair_p1_title">Two numbers, two cells</string>
+    <string name="lesson_hidden_pair_p1">Look at two numbers in one house. If both can only go in the same two cells, those cells are reserved for them – one gets each number.</string>
+    <string name="lesson_hidden_pair_p2_title">Clean up</string>
+    <string name="lesson_hidden_pair_p2">So these two cells can\'t hold anything else. Remove all other candidates from them.\n\nHidden pairs are harder to see than naked pairs, because the extra candidates hide them.</string>
+
+    <string name="drill_full_house_summary">Spot the last empty cell of a house</string>
+    <string name="drill_hidden_single_summary">Find where a number must go</string>
+    <string name="drill_naked_single_summary">Find cells with only one possible number</string>
+    <string name="drill_singles_mix">Singles mix</string>
+    <string name="drill_singles_mix_summary">All three placement techniques, mixed</string>
+    <string name="drill_naked_pair_summary">Remove candidates with naked pairs</string>
+    <string name="drill_pointing_summary">Remove candidates with pointing</string>
+    <string name="drill_hidden_pair_summary">Remove candidates with hidden pairs</string>
+</resources>

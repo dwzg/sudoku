@@ -48,6 +48,12 @@ fun SudokuBoard(
     settings: GameSettings,
     onCellClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
+    /** Cells shaded to explain a technique. */
+    marked: Set<Int> = emptySet(),
+    /** Candidates (cell -> digit mask) shown emphasised, e.g. the digits of a pair. */
+    markedNotes: Map<Int, Int> = emptyMap(),
+    /** Candidates (cell -> digit mask) shown struck out because they can be removed. */
+    removableNotes: Map<Int, Int> = emptyMap(),
 ) {
     val colors = MaterialTheme.colorScheme
     val density = LocalDensity.current
@@ -81,6 +87,7 @@ fun SudokuBoard(
         val sameColor = colors.primary.copy(alpha = 0.22f).compositeOver(base)
         val selectedColor = colors.primary.copy(alpha = 0.36f).compositeOver(base)
         val errorColor = colors.errorContainer
+        val markedColor = colors.tertiary.copy(alpha = 0.24f).compositeOver(base)
         val thinLine = colors.outlineVariant
         val thickLine = colors.onSurface.copy(alpha = 0.75f)
 
@@ -105,6 +112,7 @@ fun SudokuBoard(
                 val bg: Color? = when {
                     i == selected -> selectedColor
                     invalid && !game.isGiven(i) && !game.isQuit -> errorColor
+                    i in marked -> markedColor
                     settings.highlightSameNumbers && selectedValue != null && value == selectedValue -> sameColor
                     settings.highlightRegion && selected != null && Sudoku.isRelated(i, selected) -> regionColor
                     else -> null
@@ -145,8 +153,16 @@ fun SudokuBoard(
                         if (!game.hasNote(i, d)) continue
                         val nx = x + ((d - 1) % 3) * sub
                         val ny = y + ((d - 1) / 3) * sub
-                        val highlighted = settings.highlightSameNumbers && d == selectedValue
-                        if (highlighted) {
+                        val removable = (removableNotes[i] ?: 0) and (1 shl d) != 0
+                        val key = (markedNotes[i] ?: 0) and (1 shl d) != 0
+                        val highlighted = key || (settings.highlightSameNumbers && d == selectedValue)
+                        if (removable) {
+                            drawCircle(
+                                colors.error.copy(alpha = 0.18f),
+                                radius = sub * 0.46f,
+                                center = Offset(nx + sub / 2f, ny + sub / 2f),
+                            )
+                        } else if (highlighted) {
                             drawCircle(
                                 colors.primary.copy(alpha = 0.25f),
                                 radius = sub * 0.46f,
@@ -156,7 +172,11 @@ fun SudokuBoard(
                         val layout = layouts.note[d - 1]
                         drawText(
                             layout,
-                            color = if (highlighted) colors.primary else colors.onSurfaceVariant,
+                            color = when {
+                                removable -> colors.error
+                                highlighted -> colors.primary
+                                else -> colors.onSurfaceVariant
+                            },
                             topLeft = Offset(
                                 nx + (sub - layout.size.width) / 2f,
                                 ny + (sub - layout.size.height) / 2f,

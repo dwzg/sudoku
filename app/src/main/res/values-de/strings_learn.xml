@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="learn">Lernen</string>
+    <string name="learn_summary">Lektionen und Training</string>
+    <string name="lessons">Lektionen</string>
+    <string name="lessons_summary">Von den Regeln bis zu fortgeschrittenen Techniken, Schritt für Schritt</string>
+    <string name="training">Training</string>
+    <string name="training_summary">Kurze Übungen auf Zeit, damit jede Technik in Fleisch und Blut übergeht</string>
+    <string name="completed">Abgeschlossen</string>
+    <string name="close">Schließen</string>
+    <string name="next">Weiter</string>
+    <string name="previous">Zurück</string>
+    <string name="finish">Fertig</string>
+    <string name="show_me">Zeig es mir</string>
+    <string name="example">Beispiel</string>
+    <string name="practice_n">Übung %1$d von %2$d</string>
+    <string name="step_n">Schritt %1$d von %2$d</string>
+    <string name="round_n">Runde %1$d von %2$d</string>
+    <string name="preparing_exercise">Neues Rätsel wird vorbereitet …</string>
+    <string name="lesson_complete">Lektion abgeschlossen!</string>
+    <string name="lesson_complete_body">Jetzt kennst du die Technik „%1$s“. Trainiere sie, um schneller zu werden, oder mach mit der nächsten Lektion weiter.</string>
+    <string name="train_this">Diese Technik trainieren</string>
+    <string name="back_to_learn">Zurück zur Übersicht</string>
+    <string name="training_done">Training abgeschlossen!</string>
+    <string name="training_result">%1$d von %2$d beim ersten Versuch richtig\nZeit: %3$s</string>
+    <string name="train_again">Nochmal trainieren</string>
+    <string name="drill_not_played">Noch nicht gespielt</string>
+    <string name="drill_best_score">Bestwert: %1$d/%2$d</string>
+    <string name="drill_best_time">Bestwert: %1$d/%2$d · %3$s</string>
+
+    <string name="house_row">Zeile %1$d</string>
+    <string name="house_column">Spalte %1$d</string>
+    <string name="house_box">Block %1$d</string>
+
+    <string name="technique_full_house">Letzte freie Zelle</string>
+    <string name="technique_hidden_single">Versteckter Einer</string>
+    <string name="technique_naked_single">Nackter Einer</string>
+    <string name="technique_naked_pair">Nacktes Paar</string>
+    <string name="technique_pointing">Zeigende Kandidaten</string>
+    <string name="technique_hidden_pair">Verstecktes Paar</string>
+
+    <string name="prompt_full_house">Finde eine Zeile, Spalte oder einen Block mit nur einer freien Zelle und fülle sie aus. Wähle die Zelle und tippe dann auf die Zahl.</string>
+    <string name="prompt_hidden_single">Finde eine Zahl, die in einer Zeile, Spalte oder einem Block nur in eine Zelle passt, und setze sie.</string>
+    <string name="prompt_naked_single">Finde eine Zelle, in die nur eine Zahl passt, und setze sie.</string>
+    <string name="prompt_naked_pair">Finde ein nacktes Paar und entferne einen Kandidaten, den es ausschließt. Wähle die Zelle und tippe auf die Zahl, die weg soll.</string>
+    <string name="prompt_pointing">Finde eine Zahl, die entlang einer Zeile oder Spalte zeigt, und entferne einen Kandidaten, den sie ausschließt.</string>
+    <string name="prompt_hidden_pair">Finde ein verstecktes Paar und entferne einen anderen Kandidaten aus einer seiner beiden Zellen.</string>
+
+    <string name="feedback_correct">Richtig!</string>
+    <string name="feedback_revealed">So funktioniert es</string>
+    <string name="feedback_wrong">Nicht ganz – versuch es nochmal</string>
+    <string name="feedback_cannot_remove">Dieser Kandidat lässt sich so nicht entfernen</string>
+    <string name="feedback_other_technique">Richtige Zahl, andere Technik</string>
+    <string name="feedback_other_technique_body">Der Zug stimmt, ist aber kein „%1$s“. Versuch, einen zu finden.</string>
+
+    <string name="explain_full_house">In %1$s ist nur noch eine Zelle frei, also bekommt sie die fehlende %2$d.</string>
+    <string name="explain_hidden_single">In %1$s passt die %2$d nur in eine Zelle. Jede andere freie Zelle sieht schon eine %2$d in ihrer Zeile, Spalte oder ihrem Block.</string>
+    <string name="explain_naked_single">Zeile, Spalte und Block dieser Zelle enthalten schon alle anderen Zahlen, also passt hier nur die %1$d.</string>
+    <string name="explain_naked_pair">Zwei Zellen in %1$s können nur %2$d oder %3$d enthalten. Deshalb können beide Zahlen aus den anderen Zellen von %1$s entfernt werden.</string>
+    <string name="explain_pointing">In %1$s kann die %2$d nur in %3$s stehen. Deshalb kann die %2$d aus dem Rest von %3$s entfernt werden.</string>
+    <string name="explain_hidden_pair">In %1$s passen %2$d und %3$d nur in dieselben zwei Zellen. Deshalb können alle anderen Kandidaten aus diesen beiden Zellen entfernt werden.</string>
+
+    <string name="lesson_rules">Die Regeln</string>
+    <string name="lesson_rules_summary">Wie Sudoku funktioniert – und dein erster Zug</string>
+    <string name="lesson_rules_p1_title">Das Ziel</string>
+    <string name="lesson_rules_p1">Fülle das Gitter so, dass jede Zeile, jede Spalte und jeder 3×3-Block jede Zahl von 1 bis 9 genau einmal enthält.\n\nDas Gitter hat 9 Zeilen, 9 Spalten und 9 Blöcke. Zusammen nennen wir sie Einheiten.</string>
+    <string name="lesson_rules_p2_title">Niemals raten</string>
+    <string name="lesson_rules_p2">Einige Zahlen sind zu Beginn vorgegeben und ändern sich nie. Jedes Rätsel in dieser App hat genau eine Lösung, und du kommst immer allein mit Logik dorthin.\n\nDie Lektionen zeigen dir die Techniken, mit denen du die nächste Zahl findest.</string>
+    <string name="lesson_rules_p3_title">Letzte freie Zelle</string>
+    <string name="lesson_rules_p3">Der einfachste Zug: Hat eine Zeile, Spalte oder ein Block nur noch eine freie Zelle, bekommt sie die eine Zahl, die noch fehlt.\n\nGleich siehst du ein Beispiel, danach bist du dran.</string>
+
+    <string name="lesson_hidden_single_summary">Finde den einzigen Platz für eine Zahl</string>
+    <string name="lesson_hidden_single_p1_title">Konzentriere dich auf eine Zahl</string>
+    <string name="lesson_hidden_single_p1">Wähle eine Zahl und einen Block. Prüfe für jede freie Zelle des Blocks, ob die Zahl schon in der Zeile oder Spalte dieser Zelle steht. Wenn ja, kann die Zahl dort nicht hin.</string>
+    <string name="lesson_hidden_single_p2_title">Nur noch ein Platz</string>
+    <string name="lesson_hidden_single_p2">Bleibt nur eine Zelle übrig, muss die Zahl dorthin. Das nennt man einen versteckten Einer: Die Zelle hätte vielleicht noch andere Möglichkeiten – aber die Zahl hat keinen anderen Platz.\n\nDas funktioniert genauso für Zeilen und Spalten.</string>
+    <string name="lesson_hidden_single_p3_title">Tipp</string>
+    <string name="lesson_hidden_single_p3">Beginne mit Zahlen, die schon oft auf dem Feld stehen. Sie schließen die meisten Zellen aus, deshalb findest du mit ihnen versteckte Einer am leichtesten.\n\nTippe auf eine Zahl im Feld, um alle gleichen Zahlen hervorzuheben.</string>
+
+    <string name="lesson_naked_single_summary">Finde die einzige Zahl, die in eine Zelle passt</string>
+    <string name="lesson_naked_single_p1_title">Konzentriere dich auf eine Zelle</string>
+    <string name="lesson_naked_single_p1">Jetzt andersherum: Wähle eine freie Zelle und sammle alle Zahlen, die schon in ihrer Zeile, ihrer Spalte und ihrem Block stehen.</string>
+    <string name="lesson_naked_single_p2_title">Nur eine Zahl passt</string>
+    <string name="lesson_naked_single_p2">Sind acht verschiedene Zahlen schon vergeben, passt nur noch die neunte. Das nennt man einen nackten Einer.\n\nSuche nach Zellen, deren Zeile, Spalte und Block schon ziemlich voll sind.</string>
+
+    <string name="lesson_naked_pair">Kandidaten &amp; nackte Paare</string>
+    <string name="lesson_naked_pair_summary">Mit Notizen Zahlen ausschließen</string>
+    <string name="lesson_naked_pair_p1_title">Kandidaten</string>
+    <string name="lesson_naked_pair_p1">Schwerere Rätsel brauchen Notizen. Die Kandidaten einer Zelle sind alle Zahlen, die dort noch stehen könnten. Schreib sie als kleine Zahlen in die Zelle.\n\nIm Spiel schaltest du dafür den Notizmodus ein. In diesen Übungen sind die Kandidaten schon eingetragen.</string>
+    <string name="lesson_naked_pair_p2_title">Nacktes Paar</string>
+    <string name="lesson_naked_pair_p2">Haben zwei Zellen derselben Einheit genau dieselben zwei Kandidaten – zum Beispiel 3 und 7 –, dann bekommen diese beiden Zellen die 3 und die 7, in irgendeiner Reihenfolge.</string>
+    <string name="lesson_naked_pair_p3_title">Aufräumen</string>
+    <string name="lesson_naked_pair_p3">Also kann keine andere Zelle dieser Einheit eine 3 oder 7 sein. Entferne beide Zahlen aus den Kandidaten aller anderen Zellen der Einheit.\n\nUm einen Kandidaten zu entfernen, wähle die Zelle und tippe auf die Zahl.</string>
+
+    <string name="lesson_pointing_summary">Wenn ein Block entlang einer Linie zeigt</string>
+    <string name="lesson_pointing_p1_title">Block trifft Linie</string>
+    <string name="lesson_pointing_p1">Sieh dir eine Zahl in einem Block an. Liegen alle ihre Kandidaten in diesem Block in derselben Zeile, muss die Zahl in diese Zeile – irgendwo innerhalb des Blocks.\n\nDasselbe gilt für Spalten.</string>
+    <string name="lesson_pointing_p2_title">Außerhalb des Blocks entfernen</string>
+    <string name="lesson_pointing_p2">Weil der Block die Zahl in dieser Zeile verwendet, kann keine andere Zelle der Zeile sie haben. Entferne die Zahl aus den Zellen der Zeile, die außerhalb des Blocks liegen.</string>
+
+    <string name="lesson_hidden_pair_summary">Zwei Zahlen, die zwei Zellen beanspruchen</string>
+    <string name="lesson_hidden_pair_p1_title">Zwei Zahlen, zwei Zellen</string>
+    <string name="lesson_hidden_pair_p1">Sieh dir zwei Zahlen in einer Einheit an. Können beide nur in dieselben zwei Zellen, sind diese Zellen für sie reserviert – jede bekommt eine der beiden Zahlen.</string>
+    <string name="lesson_hidden_pair_p2_title">Aufräumen</string>
+    <string name="lesson_hidden_pair_p2">Diese beiden Zellen können also nichts anderes enthalten. Entferne alle anderen Kandidaten aus ihnen.\n\nVersteckte Paare sind schwerer zu sehen als nackte Paare, weil die zusätzlichen Kandidaten sie verbergen.</string>
+
+    <string name="drill_full_house_summary">Finde die letzte freie Zelle einer Einheit</string>
+    <string name="drill_hidden_single_summary">Finde, wohin eine Zahl muss</string>
+    <string name="drill_naked_single_summary">Finde Zellen mit nur einer möglichen Zahl</string>
+    <string name="drill_singles_mix">Einer-Mix</string>
+    <string name="drill_singles_mix_summary">Alle drei Platzierungstechniken gemischt</string>
+    <string name="drill_naked_pair_summary">Kandidaten mit nackten Paaren entfernen</string>
+    <string name="drill_pointing_summary">Kandidaten mit zeigenden Kandidaten entfernen</string>
+    <string name="drill_hidden_pair_summary">Kandidaten mit versteckten Paaren entfernen</string>
+</resources>

@@ -37,6 +37,7 @@ fun NumberPad(
     onDigit: (Int) -> Unit,
     modifier: Modifier = Modifier,
     columns: Int = 9,
+    showRemaining: Boolean = true,
 ) {
     Column(
         modifier.alpha(if (enabled) 1f else 0.4f),
@@ -47,7 +48,7 @@ fun NumberPad(
                 rowDigits.forEach { d ->
                     NumberKey(
                         digit = d,
-                        remaining = remaining(d),
+                        remaining = if (showRemaining) remaining(d) else null,
                         notesMode = notesMode,
                         enabled = enabled,
                         onClick = { onDigit(d) },
@@ -63,14 +64,14 @@ fun NumberPad(
 @Composable
 private fun NumberKey(
     digit: Int,
-    remaining: Int,
+    remaining: Int?,
     notesMode: Boolean,
     enabled: Boolean,
     onClick: () -> Unit,
     modifier: Modifier,
     tall: Boolean,
 ) {
-    val done = remaining <= 0
+    val done = remaining != null && remaining <= 0
     val colors = MaterialTheme.colorScheme
     Surface(
         onClick = onClick,
@@ -90,7 +91,7 @@ private fun NumberKey(
                 fontWeight = if (notesMode) FontWeight.Medium else FontWeight.SemiBold,
                 color = if (notesMode) colors.onSecondaryContainer else colors.primary,
             )
-            if (!done) {
+            if (remaining != null && !done) {
                 Text(
                     text = remaining.toString(),
                     style = MaterialTheme.typography.labelSmall,

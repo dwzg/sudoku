@@ -21,7 +21,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-enum class Screen { Home, Game, Settings, Statistics }
+enum class Screen { Home, Game, Settings, Statistics, Learn, Lesson, Training }
 
 data class GameResult(
     val difficulty: Difficulty,
@@ -82,6 +82,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     // region Navigation
 
     fun navigate(screen: Screen) = _state.update { it.copy(backStack = it.backStack + screen) }
+
+    /** Replaces the current screen, e.g. moving from a finished lesson straight into training. */
+    fun replace(screen: Screen) = _state.update { it.copy(backStack = it.backStack.dropLast(1) + screen) }
 
     fun back() {
         _state.update { if (it.backStack.size > 1) it.copy(backStack = it.backStack.dropLast(1)) else it }

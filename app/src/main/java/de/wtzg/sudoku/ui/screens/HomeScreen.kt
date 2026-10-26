@@ -22,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.outlined.Leaderboard
+import androidx.compose.material.icons.outlined.School
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledIconButton
@@ -57,6 +58,7 @@ fun HomeScreen(
     onNewGame: (Difficulty) -> Unit,
     onStatistics: () -> Unit,
     onSettings: () -> Unit,
+    onLearn: () -> Unit,
 ) {
     Surface(color = MaterialTheme.colorScheme.surface, modifier = Modifier.fillMaxSize()) {
       Box(Modifier.safeDrawingPadding()) {
@@ -101,6 +103,9 @@ fun HomeScreen(
                 ContinueCard(game, onContinue)
                 Spacer(Modifier.height(28.dp))
             }
+
+            LearnCard(onLearn)
+            Spacer(Modifier.height(28.dp))
 
             Text(
                 stringResource(R.string.new_game),
@@ -170,6 +175,43 @@ private fun ContinueCard(game: GameState, onClick: () -> Unit) {
             ) {
                 Icon(Icons.Filled.PlayArrow, stringResource(R.string.continue_game))
             }
+        }
+    }
+}
+
+@Composable
+private fun LearnCard(onClick: () -> Unit) {
+    val colors = MaterialTheme.colorScheme
+    Surface(
+        onClick = onClick,
+        shape = RoundedCornerShape(20.dp),
+        color = colors.secondaryContainer,
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Row(
+            Modifier.padding(horizontal = 20.dp, vertical = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(Icons.Outlined.School, contentDescription = null, tint = colors.onSecondaryContainer)
+            Spacer(Modifier.width(16.dp))
+            Column(Modifier.weight(1f)) {
+                Text(
+                    stringResource(R.string.learn),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = colors.onSecondaryContainer,
+                )
+                Text(
+                    stringResource(R.string.learn_summary),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = colors.onSecondaryContainer.copy(alpha = 0.8f),
+                )
+            }
+            Icon(
+                Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                contentDescription = null,
+                tint = colors.onSecondaryContainer,
+            )
         }
     }
 }
