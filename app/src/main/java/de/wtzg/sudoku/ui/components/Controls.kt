@@ -38,7 +38,10 @@ fun NumberPad(
     modifier: Modifier = Modifier,
     columns: Int = 9,
 ) {
-    Column(modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(
+        modifier.alpha(if (enabled) 1f else 0.4f),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
         (1..9).chunked(columns).forEach { rowDigits ->
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 rowDigits.forEach { d ->

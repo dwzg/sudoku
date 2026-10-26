@@ -37,6 +37,7 @@ fun SudokuApp(vm: GameViewModel, state: UiState) {
             onSecondChance = vm::secondChance,
             onDismissResult = vm::dismissResult,
             onSettings = { vm.navigate(Screen.Settings) },
+            onQuit = vm::quitGame,
         )
     }
 

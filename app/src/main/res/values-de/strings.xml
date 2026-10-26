@@ -17,6 +17,12 @@
     <string name="restart">Neu starten</string>
     <string name="restart_title">Rätsel neu starten?</string>
     <string name="restart_message">Alle Eingaben und Notizen werden gelöscht.</string>
+    <string name="quit_game">Spiel beenden</string>
+    <string name="quit_title">Dieses Spiel beenden?</string>
+    <string name="quit_message">Es zählt als verloren und kann nicht fortgesetzt werden.</string>
+    <string name="quit">Beenden</string>
+    <string name="show_solution">Lösung zeigen</string>
+    <string name="solution_shown">Lösung angezeigt</string>
     <string name="cancel">Abbrechen</string>
     <string name="reset">Zurücksetzen</string>
 

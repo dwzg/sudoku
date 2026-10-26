@@ -14,8 +14,10 @@ data class GameState(
     val elapsedSeconds: Long = 0,
     val isSolved: Boolean = false,
     val isFailed: Boolean = false,
+    /** The player gave up; the board can show the solution. */
+    val isQuit: Boolean = false,
 ) {
-    val isActive get() = !isSolved && !isFailed
+    val isActive get() = !isSolved && !isFailed && !isQuit
 
     fun isGiven(index: Int) = givens[index] != 0
 
@@ -54,6 +56,7 @@ data class GameState(
         elapsedSeconds,
         isSolved,
         isFailed,
+        isQuit,
     ).joinToString(";")
 
     companion object {
@@ -69,7 +72,7 @@ data class GameState(
 
         fun decode(encoded: String): GameState? = runCatching {
             val p = encoded.split(";")
-            require(p.size == 11 && p[0] == VERSION)
+            require((p.size == 11 || p.size == 12) && p[0] == VERSION)
             fun digits(s: String) = s.map { it.digitToInt() }.also { require(it.size == Sudoku.CELLS) }
             GameState(
                 difficulty = Difficulty.valueOf(p[1]),
@@ -82,6 +85,7 @@ data class GameState(
                 elapsedSeconds = p[8].toLong(),
                 isSolved = p[9].toBooleanStrict(),
                 isFailed = p[10].toBooleanStrict(),
+                isQuit = p.getOrNull(11)?.toBooleanStrict() ?: false,
             )
         }.getOrNull()
     }

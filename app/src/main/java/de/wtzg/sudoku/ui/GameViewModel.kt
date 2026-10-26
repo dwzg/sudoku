@@ -160,6 +160,25 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         persist()
     }
 
+    /** Ends the game as a loss. Stays on the board to reveal the solution, or goes home. */
+    fun quitGame(showSolution: Boolean) {
+        val game = _state.value.game?.takeIf { it.isActive } ?: return
+        repo.recordLost(game.difficulty)
+        undoStack.clear()
+        _state.update {
+            it.copy(
+                game = game.copy(isQuit = true),
+                selected = null,
+                notesMode = false,
+                isPaused = false,
+                canUndo = false,
+                stats = repo.loadStats(),
+                backStack = if (showSolution) it.backStack else listOf(Screen.Home),
+            )
+        }
+        persist()
+    }
+
     /** After hitting the mistake limit, lets the player keep going with one more chance. */
     fun secondChance() {
         val game = _state.value.game ?: return

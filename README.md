@@ -16,6 +16,7 @@ A modern, clean Sudoku app for Android, built with Kotlin, Jetpack Compose and M
 - **Undo, erase and hints.**
 - **Smart highlighting** of the selected row, column and box, and of identical numbers (including matching notes).
 - **Mistake checking**, with an optional 3-mistake limit. With checking off, only duplicate numbers in a row, column or box are flagged.
+- **Quit a game** from the menu, optionally revealing the solution (counts as a loss).
 - **Timer** that pauses when you leave the app, plus a pause button that hides the board.
 - **Auto-save**: close the app at any time and continue later.
 - **Statistics** per difficulty: games played and won, win rate, best and average time, win streaks.

@@ -17,6 +17,12 @@
     <string name="restart">Restart</string>
     <string name="restart_title">Restart puzzle?</string>
     <string name="restart_message">All your entries and notes will be cleared.</string>
+    <string name="quit_game">Quit game</string>
+    <string name="quit_title">Quit this game?</string>
+    <string name="quit_message">It counts as a loss and can\'t be continued.</string>
+    <string name="quit">Quit</string>
+    <string name="show_solution">Show solution</string>
+    <string name="solution_shown">Solution shown</string>
     <string name="cancel">Cancel</string>
     <string name="reset">Reset</string>
 

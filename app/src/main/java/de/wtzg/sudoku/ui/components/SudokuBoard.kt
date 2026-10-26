@@ -104,7 +104,7 @@ fun SudokuBoard(
                 val invalid = if (settings.checkMistakes) game.isWrong(i) else game.hasConflict(i)
                 val bg: Color? = when {
                     i == selected -> selectedColor
-                    invalid && !game.isGiven(i) -> errorColor
+                    invalid && !game.isGiven(i) && !game.isQuit -> errorColor
                     settings.highlightSameNumbers && selectedValue != null && value == selectedValue -> sameColor
                     settings.highlightRegion && selected != null && Sudoku.isRelated(i, selected) -> regionColor
                     else -> null
@@ -113,7 +113,18 @@ fun SudokuBoard(
                 val y = Sudoku.row(i) * cell
                 if (bg != null) drawRect(bg, Offset(x, y), Size(cell, cell))
 
-                if (value != 0) {
+                val revealed = game.isQuit && value != game.solution[i]
+                if (revealed) {
+                    val layout = layouts.entered[game.solution[i] - 1]
+                    drawText(
+                        layout,
+                        color = colors.tertiary,
+                        topLeft = Offset(
+                            x + (cell - layout.size.width) / 2f,
+                            y + (cell - layout.size.height) / 2f,
+                        ),
+                    )
+                } else if (value != 0) {
                     val layout = if (game.isGiven(i)) layouts.given[value - 1] else layouts.entered[value - 1]
                     val color = when {
                         game.isGiven(i) -> colors.onSurface

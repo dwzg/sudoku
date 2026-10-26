@@ -23,6 +23,16 @@ class GameStateTest {
     }
 
     @Test
+    fun quitGamesAreInactiveAndOldSavesStillLoad() {
+        val quit = game.copy(isQuit = true)
+        assertFalse(quit.isActive)
+        assertEquals(quit, GameState.decode(quit.encode()))
+        // Saves written before the quit flag existed have 11 fields.
+        val legacy = game.encode().substringBeforeLast(";")
+        assertEquals(game, GameState.decode(legacy))
+    }
+
+    @Test
     fun decodeRejectsGarbage() {
         assertNull(GameState.decode("nope"))
         assertNull(GameState.decode(""))

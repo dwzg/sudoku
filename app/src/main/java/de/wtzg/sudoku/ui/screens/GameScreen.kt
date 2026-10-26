@@ -82,6 +82,7 @@ class GameActions(
     val onSecondChance: () -> Unit,
     val onDismissResult: () -> Unit,
     val onSettings: () -> Unit,
+    val onQuit: (showSolution: Boolean) -> Unit,
 )
 
 @Composable
@@ -89,6 +90,7 @@ fun GameScreen(state: UiState, actions: GameActions) {
     val game = state.game ?: return
     var menuOpen by remember { mutableStateOf(false) }
     var confirmRestart by rememberSaveable { mutableStateOf(false) }
+    var confirmQuit by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -117,6 +119,10 @@ fun GameScreen(state: UiState, actions: GameActions) {
                                 DropdownMenuItem(
                                     text = { Text(stringResource(R.string.restart)) },
                                     onClick = { menuOpen = false; confirmRestart = true },
+                                )
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.quit_game)) },
+                                    onClick = { menuOpen = false; confirmQuit = true },
                                 )
                             }
                             DropdownMenuItem(
@@ -212,6 +218,25 @@ fun GameScreen(state: UiState, actions: GameActions) {
         )
     }
 
+    if (confirmQuit) {
+        AlertDialog(
+            onDismissRequest = { confirmQuit = false },
+            title = { Text(stringResource(R.string.quit_title)) },
+            text = { Text(stringResource(R.string.quit_message)) },
+            confirmButton = {
+                Row {
+                    TextButton(onClick = { confirmQuit = false }) { Text(stringResource(R.string.cancel)) }
+                    TextButton(onClick = { confirmQuit = false; actions.onQuit(true) }) {
+                        Text(stringResource(R.string.show_solution))
+                    }
+                    TextButton(onClick = { confirmQuit = false; actions.onQuit(false) }) {
+                        Text(stringResource(R.string.quit))
+                    }
+                }
+            },
+        )
+    }
+
     state.result?.let { ResultDialog(it, actions) }
 
     if (game.isFailed) {
@@ -301,6 +326,23 @@ private fun BoardArea(state: UiState, game: GameState, actions: GameActions, mod
 
 @Composable
 private fun Tools(state: UiState, actions: GameActions) {
+    val game = state.game
+    if (game != null && game.isQuit) {
+        Row(
+            Modifier.fillMaxWidth().height(76.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                stringResource(R.string.solution_shown),
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.tertiary,
+                modifier = Modifier.padding(start = 4.dp),
+            )
+            Button(onClick = { actions.onNewGame(game.difficulty) }) { Text(stringResource(R.string.new_game)) }
+        }
+        return
+    }
     val enabled = state.game?.isActive == true && !state.isPaused
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
         ToolButton(
