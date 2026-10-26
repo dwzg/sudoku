@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.dwzg.sudoku"
+    namespace = "de.wtzg.sudoku"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.dwzg.sudoku"
+        applicationId = "de.wtzg.sudoku"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

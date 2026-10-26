@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sudoku</string>
+    <string name="board_description">Sudoku-Spielfeld</string>
+    <string name="tagline">Das klassische Zahlenrätsel zum Entspannen</string>
+
+    <string name="new_game">Neues Spiel</string>
+    <string name="continue_game">Fortsetzen</string>
+    <string name="statistics">Statistiken</string>
+    <string name="settings">Einstellungen</string>
+    <string name="back">Zurück</string>
+    <string name="home">Startseite</string>
+    <string name="more">Weitere Optionen</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Weiter</string>
+    <string name="paused">Pausiert</string>
+    <string name="restart">Neu starten</string>
+    <string name="restart_title">Rätsel neu starten?</string>
+    <string name="restart_message">Alle Eingaben und Notizen werden gelöscht.</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="reset">Zurücksetzen</string>
+
+    <string name="difficulty">Schwierigkeit</string>
+    <string name="difficulty_easy">Leicht</string>
+    <string name="difficulty_medium">Mittel</string>
+    <string name="difficulty_hard">Schwer</string>
+    <string name="difficulty_expert">Experte</string>
+    <string name="difficulty_easy_desc">Entspanntes Aufwärmen mit vielen Hinweisen</string>
+    <string name="difficulty_medium_desc">Eine ausgewogene Herausforderung</string>
+    <string name="difficulty_hard_desc">Weniger Hinweise, mehr Nachdenken</string>
+    <string name="difficulty_expert_desc">Für erfahrene Rätselfans</string>
+
+    <string name="mistakes">Fehler</string>
+    <string name="hints">Tipps</string>
+    <string name="time">Zeit</string>
+    <string name="undo">Rückgängig</string>
+    <string name="erase">Löschen</string>
+    <string name="notes">Notizen</string>
+    <string name="hint">Tipp</string>
+    <string name="on">An</string>
+    <string name="off">Aus</string>
+
+    <string name="solved_title">Rätsel gelöst!</string>
+    <string name="new_best_time">Neue Bestzeit 🎉</string>
+    <string name="game_over">Spiel vorbei</string>
+    <plurals name="game_over_message">
+        <item quantity="one">Du hast %1$d Fehler gemacht. Noch eine Chance?</item>
+        <item quantity="other">Du hast %1$d Fehler gemacht. Noch eine Chance?</item>
+    </plurals>
+    <string name="second_chance">Zweite Chance</string>
+
+    <string name="section_gameplay">Spiel</string>
+    <string name="section_highlights">Hervorhebungen</string>
+    <string name="section_appearance">Darstellung</string>
+    <string name="setting_check_mistakes">Fehler prüfen</string>
+    <string name="setting_check_mistakes_desc">Falsche Zahlen sofort markieren und zählen</string>
+    <string name="setting_mistake_limit">Fehlerlimit</string>
+    <string name="setting_mistake_limit_desc">Spiel nach 3 Fehlern beenden</string>
+    <string name="setting_auto_notes">Notizen automatisch entfernen</string>
+    <string name="setting_auto_notes_desc">Notizen in Zeile, Spalte und Block löschen, wenn eine Zahl gesetzt wird</string>
+    <string name="setting_highlight_region">Zeile, Spalte und Block hervorheben</string>
+    <string name="setting_highlight_region_desc">Felder einfärben, die zum ausgewählten Feld gehören</string>
+    <string name="setting_highlight_same">Gleiche Zahlen hervorheben</string>
+    <string name="setting_highlight_same_desc">Alle Felder mit der ausgewählten Zahl einfärben</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Hell</string>
+    <string name="theme_dark">Dunkel</string>
+    <string name="setting_dynamic_color">Dynamische Farben</string>
+    <string name="setting_dynamic_color_desc">Farben aus deinem Hintergrundbild verwenden</string>
+
+    <string name="stat_played">Gespielt</string>
+    <string name="stat_won">Gewonnen</string>
+    <string name="stat_win_rate">Siegquote</string>
+    <string name="stat_best_time">Bestzeit</string>
+    <string name="stat_avg_time">Durchschnitt</string>
+    <string name="stat_streak">Serie / beste</string>
+    <string name="reset_stats">Statistiken zurücksetzen</string>
+    <string name="reset_stats_message">Alle Statistiken werden dauerhaft gelöscht.</string>
+</resources>

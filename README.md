@@ -39,7 +39,7 @@ The release build is signed with the debug key so it installs directly. Set up y
 ## Project layout
 
 ```
-app/src/main/java/com/dwzg/sudoku/
+app/src/main/java/de/wtzg/sudoku/
 ├── domain/   Solver, puzzle generator, game state (pure Kotlin, unit-tested)
 ├── data/     Settings, statistics and saved game (SharedPreferences)
 └── ui/       ViewModel, theme, board/number pad components and screens
